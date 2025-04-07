@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+}
+
+main {
+    flex: 1;
+}
+
+
+.main-footer {
+    padding: 2.5rem 1.5rem;
+    font-size: 1.25rem;
+    text-align: center;
+    background-color: #121212;
+
+}
+
+
+tbody {
+    
+    td {
+        vertical-align: middle;
+    }
+
+    .id-cell {
+        
+    }
+
+    .name-cell {
+        font-weight: 600;
+    }
+
+    .image-cell {
+        img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    .action-cell {
+    
+        .buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
+}
+
+.button-icon {
+    width: 24px;
+    padding: .5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    background-color: dodgerblue;
+    transition: background-color 0.2s ease-in-out;
+    outline: none;
+    border: none;
+
+    &:hover {
+        background-color: #007bff;
+    }
+
+    &.danger {
+        background-color: crimson;
+
+        &:hover {
+            background-color: rgb(177, 13, 46);
+        }
+    }
+
+}
