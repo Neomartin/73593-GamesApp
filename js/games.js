@@ -11,7 +11,7 @@ const games = [
     id: 1000,
     name: "Super Mario Party™ Jamboree",
     price: 75200,
-    category: "Adventure",
+    category: "Board",
     image:
       "https://assets.nintendo.com/image/fetch/q_auto/f_auto/https://atum-img-lp1.cdn.nintendo.net/i/c/49ff5c5e983d4a2a8682588179d496c5_1024",
   },
@@ -39,64 +39,234 @@ const games = [
     image:
       "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_656/b_white/f_auto/q_auto/ncom/software/switch/70010000063714/956c12eb1a4c9e68b494cca7efd23d20ba8a789a5eb02589affae64bc6bc3282",
   },
-  
 ];
 
-const tableBodyHTML = document.getElementById("table-body")
+const tableBodyHTML = document.getElementById("table-body");
+const collator = Intl.Collator("es", { sensitivity: "base", numeric: true });
+const searchHTML = document.querySelector("#name");
 
-console.log(  tableBodyHTML  )
+
+// pintarJuegos(arrayJuegosFiltrados)
 
 
-
-games.forEach((juego) => {
-    console.log(juego.name);
-
+function pintarJuegos(arrayJuegos) {
+  tableBodyHTML.innerHTML = ""; // Limpiar el contenido previo de la tabla
+  
+  arrayJuegos.forEach((juego) => {
     tableBodyHTML.innerHTML += `<tr>
-                                    <td class="image-cell">
-                                        <img src="${juego.image}" alt="">
-                                    </td>
-                                    <td class="id-cell">
-                                        ${ juego.id }
-                                    </td>
-                                    <td class="name-cell">${ juego.name }</td>
-                                    <td class="category-cell">
-                                        ${ juego.category }
-                                    </td>
-                                    <td class="price-cell">
-                                        $ ${ juego.price } 
-                                    </td>
-                                    <td class="action-cell">
-                                        
-                                        <div class="buttons">
+    <td class="image-cell">
+    <img src="${juego.image}" alt="">
+                                          </td>
+                                          <td class="id-cell">
+                                              ${juego.id}
+                                          </td>
+                                          <td class="name-cell">${juego.name}</td>
+                                          <td class="category-cell">
+                                              ${juego.category}
+                                          </td>
+                                          <td class="price-cell">
+                                              $ ${juego.price} 
+                                          </td>
+                                          <td class="action-cell">
+                                              
+                                              <div class="buttons">
 
-                                            <button class="button-icon">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
+                                                  <button class="button-icon">
+                                                      <i class="fa-solid fa-pencil"></i>
+                                                  </button>
 
-                                            <button class="button-icon danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
+                                                  <button class="button-icon danger">
+                                                      <i class="fa-solid fa-trash"></i>
+                                                  </button>
 
-                                        </div>
+                                              </div>
 
-                                    </td>
-                                </tr>`;
+                                          </td>
+                                      </tr>`;
+  });
+}
+
+pintarJuegos(games);
+
+
+searchHTML.addEventListener("keyup", function(evt) { 
+
+    const nombreJuegoABuscar = evt.target.value.toLowerCase();
+
+    const juegosFiltradosPorNombre = games.filter(game => {
+
+      const nombreJuego = game.name.toLowerCase();
+
+      return nombreJuego.includes( nombreJuegoABuscar )
+
+      // if (nombreJuegoABuscar === game.name.toLowerCase()) {
+      //   return true;
+      // }
+
+    })
+
+
+
+    pintarJuegos(juegosFiltradosPorNombre)
 
 })
 
 
 
+function filtrarPorNombre() {
+
+  console.log("Filtrar por nombre")
+
+}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function ordenarPorPrecioAscendente() {
+  const juegosAsc = games.toSorted((a, b) => {
+    return a.price - b.price; // esto funciona correctamente para ordernar valores numericos
+  });
+  pintarJuegos(juegosAsc);
+}
+
+function ordenarPorPrecioDescendente() {
+  const juegosDesc = games.toSorted((a, b) => {
+    return b.price - a.price; // esto funciona correctamente para ordernar valores numericos
+  });
+
+  pintarJuegos(juegosDesc);
+}
+
+function filtrarPorCategoria(eventito) {
+  const categoriaSeleccionada = eventito.target.value.toLowerCase();
+
+  const juegosFiltrados = games.filter((juego) => {
+    // console.log(categoriaSeleccionada, juego.category)
+
+    if (juego.category.toLowerCase() === categoriaSeleccionada) {
+      return true;
+    }
+
+    return false;
+  });
+
+  pintarJuegos(juegosFiltrados);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// !Función que ordena los juegos por una propiedad y un orden determinado
+// @params {string} orden - Puede ser "asc" o "desc"
+// function ordenar(propiedad, orden) {
+//   if (!orden) {
+//     pintarJuegos(games);
+//     return;
+//   }
+
+//   //// const primerElementoDelArray = games[0];
+
+//   //// const valorPropiedadElem = primerElementoDelArray[propiedad];
+
+//   //// const tipoDeDato = typeof valorPropiedadElem; // "string" o "number"
+
+//   const juegosOrdenados = games.toSorted((a, b) => {
+//     if (orden === "desc") {
+//       return collator.compare(b[propiedad], a[propiedad]);
+//     } else {
+//       return collator.compare(a[propiedad], b[propiedad]);
+//     }
+//     //// if (tipoDeDato === "string") {
+//     ////   if (orden === "desc") {
+//     ////     if (a[propiedad].toLowerCase() > b[propiedad].toLowerCase()) {
+//     ////       return -1;
+//     ////     }
+//     ////     if (a[propiedad].toLowerCase() < b[propiedad].toLowerCase()) {
+//     ////       return 1;
+//     ////     }
+//     ////     return 0;
+//     ////   } else {
+//     ////     if (a[propiedad].toLowerCase() > b[propiedad].toLowerCase()) {
+//     ////       return 1;
+//     ////     }
+//     ////     if (a[propiedad].toLowerCase() < b[propiedad].toLowerCase()) {
+//     ////       return -1;
+//     ////     }
+//     ////     return 0;
+//     ////   }
+//     //// }
+// //
+//     //// if (tipoDeDato === "number") {
+//     ////   if (orden === "desc") {
+//     ////     return b[propiedad] - a[propiedad];
+//     ////   } else {
+//     ////     return a[propiedad] - b[propiedad];
+//     ////   }
+//     //// }
+//   });
+
+//   const juegosOrdenados = games.toSorted((a, b) => {
+
+//     if(orden === "desc") {
+//       return b.price - a.price
+//     } else if(orden === 'asc') {
+//       return a.price - b.price
+//     }
+
+//   })
+
+//   pintarJuegos(juegosOrdenados);
+
+//   // const juegosOrdenados = games.toSorted((a, b) =>
+//   //   orden === "desc" ? b.price - a.price : a.price - b.price
+//   // );
+// }
 
 // Elaborar una función que reciba un array de objectos y pinte cada uno de ellos en el HTML, precisamente en el body de la tabla de juegos.
 
-
-
-
-
-
-
 // function pintarJuegos()
+
+// Operador ternario
+
+// condicion ?
