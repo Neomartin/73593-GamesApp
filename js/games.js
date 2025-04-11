@@ -75,7 +75,7 @@ function pintarJuegos(arrayJuegos) {
                                                       <i class="fa-solid fa-pencil"></i>
                                                   </button>
 
-                                                  <button class="button-icon danger">
+                                                  <button class="button-icon danger" onclick="borrarJuego(${juego.id})">
                                                       <i class="fa-solid fa-trash"></i>
                                                   </button>
 
@@ -89,33 +89,51 @@ function pintarJuegos(arrayJuegos) {
 pintarJuegos(games);
 
 
-searchHTML.addEventListener("keyup", function(evt) { 
-
-    const nombreJuegoABuscar = evt.target.value.toLowerCase();
-
-    const juegosFiltradosPorNombre = games.filter(game => {
-
-      const nombreJuego = game.name.toLowerCase();
-
-      return nombreJuego.includes( nombreJuegoABuscar )
-
-      // if (nombreJuegoABuscar === game.name.toLowerCase()) {
-      //   return true;
-      // }
-
-    })
+searchHTML.addEventListener("keyup", filtrarPorNombre);
 
 
+function borrarJuego(idBorrar) {
+  // 1- Recibo el id para saber que elemento tengo que borrar
+  // 2- Vamos a buscar la posicion del juego usando findIndex 
+  const indice = games.findIndex(juego => {
 
-    pintarJuegos(juegosFiltradosPorNombre)
+    if(juego.id === idBorrar) {
+      return true
+    }
 
-})
+    // return undefined // undefined -> falsy value = false
+  })
+
+  const borrar = confirm("Realmente desea borrar este juego?")
+
+  // 3a- Confirmamos que el usuario realmente quiere borrar el juego
+  if(borrar) {
+
+    // 3b- Usamos splice para borrar, pero splice necesita un dato para saber que elemento borra, ese dato es la posicion (indice)
+    games.splice(indice, 1)
+  
+    pintarJuegos(games)
+  }
+
+}
 
 
 
-function filtrarPorNombre() {
+function filtrarPorNombre(evento) {
 
-  console.log("Filtrar por nombre")
+  const nombreJuegoABuscar = evento.target.value.toLowerCase();
+
+  const juegosFiltradosPorNombre = games.filter((game) => {
+    const nombreJuego = game.name.toLowerCase();
+
+    return nombreJuego.includes(nombreJuegoABuscar);
+
+    // if (nombreJuegoABuscar === game.name.toLowerCase()) {
+    //   return true;
+    // }
+  });
+
+  pintarJuegos(juegosFiltradosPorNombre);
 
 }
 
