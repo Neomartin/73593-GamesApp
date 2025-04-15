@@ -75,3 +75,11 @@ tbody {
     }
 
 }
+
+.admin-form {
+    padding: 1rem 2rem;
+    border: 1px solid crimson;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}

@@ -1,126 +1,142 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Games App</title>
 
-    <!-- #Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu"
-      crossorigin="anonymous"
-    ></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Games App</title>
 
-    <!-- # FontAwesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+  <!-- #Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu"
+    crossorigin="anonymous"></script>
 
-    <!-- # Custom Styles -->
-    <link rel="stylesheet" href="/css/styles.css" />
-  </head>
+  <!-- # FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <body>
-    <header>
-      <nav class="navbar bg-primary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/5930/5930147.png"
-              alt="Logo"
-              height="30"
-              class="d-inline-block align-text-top"
-            />
-            Games App Dev
-          </a>
-        </div>
-      </nav>
-    </header>
+  <!-- # Custom Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
 
-    <main class="container-xl">
-      <div class="row">
-        <div class="col-12 col-lg-4">
-          <h2>FORMULARIO</h2>
-        </div>
+<body>
+  <header>
+    <nav class="navbar bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="https://cdn-icons-png.flaticon.com/512/5930/5930147.png" alt="Logo" height="30"
+            class="d-inline-block align-text-top" />
+          Games App Dev
+        </a>
+      </div>
+    </nav>
+  </header>
 
-        <!-- #SEGUNDO DIV PARA FILTROS Y TABLA -->
-        <div class="col-12 col-lg-8">
-          <h2>JUEGOS</h2>
-
-          <div class="p-3 border border-info-subtle">
-
-            <div class="row">
+  <main class="container-xl">
+    <div class="row">
 
 
+      <div class="col-12 col-lg-4 mt-4">
+        <h2>FORMULARIO</h2>
+
+        <form class="admin-form" id="games-form">
+
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Titulo</label>
+            <input type="text" name="name" class="form-control" id="name" required minlength="3"
+              placeholder="Mario Party">
+          </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label">URL Imagen</label>
+            <input type="url" required name="image" class="form-control" id="image"
+              placeholder="http://example.com/image.png">
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="price" class="form-label">Precio</label>
+              <input type="number" required min="1" name="price" class="form-control" id="price" placeholder="199.99">
+            </div>
+            <div class="col">
+              <label for="category" class="form-label">Precio</label>
+              <select name="category" id="category" class="form-select">
+                <option value="action">Acción</option>
+                <option value="adventure">Aventura</option>
+                <option value="board">Tablero</option>
+                <option value="sports">Deportes</option>
+                <option value="rol">Rol</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Cargar</button>
+
+
+        </form>
+
+
+
+      </div>
+
+      <!-- #SEGUNDO DIV PARA FILTROS Y TABLA -->
+      <div class="col-12 col-lg-8 mt-4 ">
+        <h2>JUEGOS</h2>
+
+        <div class="p-3 border border-info-subtle">
+
+          <div class="row">
 
 
 
 
-              <div class="col">
-                <label for="name" class="form-label">Buscar</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  placeholder="Nombre del juego"
-                />
-              </div>
+
+
+            <div class="col">
+              <label for="name" class="form-label">Buscar</label>
+              <input type="text" class="form-control" id="search" placeholder="Nombre del juego" />
+            </div>
 
 
 
 
 
 
-              <div class="col">
-                <label for="genre" class="form-label">Categoría</label>
+            <div class="col">
+              <label for="genre" class="form-label">Categoría</label>
 
 
-                <select id="genre" 
-                        class="form-select" 
-                        onchange="filtrarPorCategoria(event)">
+              <select id="genre" class="form-select" onchange="filtrarPorCategoria(event)">
 
-                  <option selected disabled>Selecciona un género</option>
-                  <option value="action">Acción</option>
-                  <option value="adventure">Aventura</option>
-                  <option value="board">Tablero</option>
-                  <option value="sports">Deportes</option>
-                  
-                </select>
+                <option selected disabled>Selecciona un género</option>
+                <option value="action">Acción</option>
+                <option value="adventure">Aventura</option>
+                <option value="board">Tablero</option>
+                <option value="sports">Deportes</option>
+
+              </select>
 
 
-              </div>
+            </div>
 
-              <div class="col">
-                <label for="genre" class="form-label">Ordenar</label>
-                <div>
-                  <button
-                    onclick="ordenarPorPrecioAscendente('asc')"
-                    class="btn btn-sm btn-primary"
-                    title="Ordenar precio ascendente"
-                  >
-                    <i class="fa-solid fa-caret-up"></i>
-                  </button>
+            <div class="col">
+              <label for="genre" class="form-label">Ordenar</label>
+              <div>
+                <button onclick="ordenarPorPrecioAscendente('asc')" class="btn btn-sm btn-primary"
+                  title="Ordenar precio ascendente">
+                  <i class="fa-solid fa-caret-up"></i>
+                </button>
 
-                  <button
-                    onclick="ordenarPorPrecioDescendente('desc')"
-                    class="btn btn-sm btn-primary"
-                    title="Ordenar precio descendente"
-                  >
-                    <i class="fa-solid fa-caret-down"></i>
-                  </button>
+                <button onclick="ordenarPorPrecioDescendente('desc')" class="btn btn-sm btn-primary"
+                  title="Ordenar precio descendente">
+                  <i class="fa-solid fa-caret-down"></i>
+                </button>
 
-                  <!-- <button onclick="ordenarPorPrecio('asc')" 
+                <!-- <button onclick="ordenarPorPrecio('asc')" 
                                         class="btn btn-sm btn-primary" 
                                         title="Ordenar precio ascendente">
 
@@ -134,32 +150,50 @@
                                 <button onclick="ordenarPorPrecio()" class="btn btn-sm btn-primary" title="Ordenar precio descendente">
                                     <i class="fa-solid fa-caret-down"></i>
                                 </button> -->
-                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <table class="table table-dark table-striped">
-            <thead>
-              <tr>
-                <th>Imagen</th>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Género</th>
-                <th>Price</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Género</th>
+              <th>Price</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
 
-            <tbody id="table-body"></tbody>
-          </table>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- #MODAL -->
+    <div class="modal fade" id="game-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="game-modal-title">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="game-modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer class="main-footer">FOOTER</footer>
+  <footer class="main-footer">FOOTER</footer>
 
-    <!-- # Leemos nuestro JS -->
-    <script src="/js/games.js"></script>
-  </body>
+  <!-- # Leemos nuestro JS -->
+  <script src="/js/games.js"></script>
+</body>
+
 </html>

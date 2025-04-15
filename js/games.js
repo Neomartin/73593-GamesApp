@@ -41,9 +41,74 @@ const games = [
   },
 ];
 
+
+// const categories = [
+//   { id: 1, value: "action", viewValue: "Acción" },
+//   { id: 2, value: "adventure", viewValue: "Aventura" },
+//   { id: 3, value: "board", viewValue: "Juegos de mesa" },
+//   { id: 4, value: "puzzle", viewValue: "Rompecabezas" },
+//   { id: 5, value: "strategy", viewValue: "Estrategia" },
+//   { id: 6, value: "sports", viewValue: "Deportes" },
+// ]
+
 const tableBodyHTML = document.getElementById("table-body");
 const collator = Intl.Collator("es", { sensitivity: "base", numeric: true });
-const searchHTML = document.querySelector("#name");
+const searchHTML = document.querySelector("#search");
+
+const gamesFormHTML = document.getElementById("games-form");
+
+let gameDetailButtons;
+
+
+
+
+
+
+
+gamesFormHTML.addEventListener("submit", (evt) => {
+  // Función que se ejecuta al escuchar el evento onsubmit
+  evt.preventDefault()
+
+  console.log(evt.target.elements)
+
+  const el = evt.target.elements;
+
+  const newGame = {
+    id: Date.now().toString().slice(-5),
+    name: el.name.value,
+    price: el.price.valueAsNumber,
+    image: el.image.value,
+    category: el.category.value
+  }
+
+  games.push(newGame)
+
+  pintarJuegos(games)
+
+  gamesFormHTML.reset()
+
+});
+
+
+
+function mostrarJuego(id) {
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // pintarJuegos(arrayJuegosFiltrados)
@@ -71,8 +136,10 @@ function pintarJuegos(arrayJuegos) {
                                               
                                               <div class="buttons">
 
-                                                  <button class="button-icon">
-                                                      <i class="fa-solid fa-pencil"></i>
+                                                  <button class="button-icon" data-game-detail="${juego.id}" data-bs-target="#game-modal" data-bs-toggle="modal">
+
+                                                      <i class="fa-solid fa-eye"></i>
+
                                                   </button>
 
                                                   <button class="button-icon danger" onclick="borrarJuego(${juego.id})">
@@ -84,12 +151,55 @@ function pintarJuegos(arrayJuegos) {
                                           </td>
                                       </tr>`;
   });
+
+  gameDetailButtons = document.querySelectorAll("button[data-game-detail]")
+
+  gameDetailButtons.forEach(button => {
+
+    button.addEventListener("click", (event) => {
+      
+      const id = event.currentTarget.dataset.gameDetail;
+
+      const juego = games.find(game => {
+        
+        if(game.id == id) {
+          return true
+        }
+
+      })
+
+      const modalTitle = document.getElementById("game-modal-title")
+      const modalBody = document.getElementById("game-modal-body")
+
+      modalTitle.innerText = juego.name;
+      modalBody.innerHTML = `<div class="row">
+                                <div class="col">
+                                  <img src="${juego.image}" width="150px" height="150px">
+                                </div>
+                                <div class="col">
+                                    <p>${juego.category}</p>  
+                                    <p>$ ${juego.price}</p>  
+                                  </div>
+                              </div>
+      
+      `
+
+
+
+      // console.dir(event)
+      // console.dir(event.currentTarget.dataset.gameDetail)
+
+    })
+
+  })
 }
 
 pintarJuegos(games);
 
 
 searchHTML.addEventListener("keyup", filtrarPorNombre);
+
+
 
 
 function borrarJuego(idBorrar) {
