@@ -184,10 +184,11 @@ function pintarJuegos(arrayJuegos) {
       
       `
 
+      // const gameModal = document.getElementById("game-modal");
 
+      // const modal = new bootstrap.Modal(gameModal)
 
-      // console.dir(event)
-      // console.dir(event.currentTarget.dataset.gameDetail)
+      // modal.show()
 
     })
 
